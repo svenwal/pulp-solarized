@@ -11,6 +11,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="author" content="{{ .Site.Params.Author }}" />
   <link rel="shortcut icon" type="image/x-icon" href="/img/{{ .Site.Params.favicon }}">
+  {{ range .AlternativeOutputFormats -}}
+    {{ printf `<link rel="%s" type="%s" href="%s" title="%s" />` .Rel .MediaType.Type .Permalink $.Site.Title | safeHTML }}
+{{ end -}}
 
   <!-- css -->
   {{ $style := resources.Get "css/style.css" }}
